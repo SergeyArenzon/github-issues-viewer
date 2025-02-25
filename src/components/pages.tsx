@@ -22,6 +22,8 @@ import {
     
         return pages;
     }
+
+    const pagesOnView = getPaginationRange(nextPage -1, lastPage);
     
     console.log(getPaginationRange(nextPage -1, lastPage));
     
@@ -40,13 +42,13 @@ import {
                 {nextPage > 5 && <PaginationEllipsis />}
             </PaginationItem>
             {
-                getPaginationRange(nextPage -1, lastPage).map((number, index) => (
+                pagesOnView.map((number, index) => (
                     <PaginationItem key={number}>
                         <PaginationLink 
                         isActive={nextPage - 1  === number}
                         onClick={(e) => {
                             e.preventDefault();
-                            onNextClick(number - 1)
+                            onNextClick(number)
                         }}
                         href="#">
                             {number}
@@ -55,7 +57,7 @@ import {
                 ))
             }
             <PaginationItem>
-                <PaginationEllipsis />
+                 <PaginationEllipsis />
             </PaginationItem>
             <PaginationItem>
                 <PaginationNext onClick={(e) => {

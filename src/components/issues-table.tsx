@@ -16,25 +16,24 @@ const IssuesTable = ({ issues, setIssue }) => {
     
   return (
     <Table className="w-full">
-        <TableCaption>A list of your recent invoices.</TableCaption>
         <TableHeader>
             <TableRow>
+                <TableHead></TableHead>
                 <TableHead className="w-[100px]">Number</TableHead>
                 <TableHead>title</TableHead>
                 <TableHead>created at</TableHead>
                 <TableHead>state</TableHead>
-                <TableHead></TableHead>
             </TableRow>
         </TableHeader>
         <TableBody>
             {
                 issues.map((issue, index) => (
                     <TableRow>
+                        <TableCell className="text-left"><Button onClick={() => setIssue(issue)}> Expand </Button></TableCell>
                         <TableCell className=" text-left">{issue.number}</TableCell>
                         <TableCell className=" text-left">{issue.title}</TableCell>
                         <TableCell className=" text-left">{issue.created_at}</TableCell>
                         <TableCell className="text-left"><Badge variant={issue.state}>{issue.state}</Badge></TableCell>
-                        <TableCell className="text-left"><Button onClick={() => setIssue(issue)}> Expand </Button></TableCell>
                     </TableRow>
                 ))
             }
